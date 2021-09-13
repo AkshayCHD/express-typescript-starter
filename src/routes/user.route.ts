@@ -29,7 +29,7 @@ router.put(
   body("name", nameError).optional().isString().isLength(nameRange),
   body("country", countryError).optional().isString().isLength(countryRange),
   body("age", ageError).optional().isNumeric().isLength(ageRange),
-  userController.createUser
+  userController.updateUser
 );
 
 router.get("/", userController.getUser);

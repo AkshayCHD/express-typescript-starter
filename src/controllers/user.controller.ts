@@ -56,6 +56,7 @@ class UserController {
       const userId = request.user._id;
       const { userName, name, age, country } = request.body;
       const user = await User.findById(userId);
+      console.log(userId);
       if (!user) {
         throw new APIError("Invalid User id", 400);
       }

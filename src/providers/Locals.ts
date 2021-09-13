@@ -14,12 +14,12 @@ class Locals {
    * throughout the app's runtime
    */
   public static config(): any {
-    dotenv.config({ path: path.join(__dirname, "../../.env") });
     const environment = process.env.ENV || "development";
     const url = process.env.APP_URL || `http://localhost:${process.env.PORT}`;
     const port = process.env.PORT || 5521;
     const appSecret = process.env.APP_SECRET || "This is your responsibility!";
     const mongooseUrl = process.env.MONGOOSE_URL;
+    const mongooseUrlUnitTest = process.env.MONGOOSE_URL_UNIT_TEST;
     const jwtExpiresIn = process.env.JWT_EXPIRES_IN || 3;
     const apiPrefix = process.env.API_PREFIX || "api";
     return {
@@ -30,6 +30,7 @@ class Locals {
       port,
       url,
       environment,
+      mongooseUrlUnitTest,
     };
   }
 

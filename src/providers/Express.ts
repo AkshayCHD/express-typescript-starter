@@ -33,6 +33,10 @@ class Express {
     this.express.use(`/${apiPrefix}`, apiRouter);
   }
 
+  public getExpress(): express.Application {
+    return this.express;
+  }
+
   /**
    * Starts the express server
    */
