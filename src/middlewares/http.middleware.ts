@@ -1,7 +1,10 @@
 import cors from "cors";
 import { Application } from "express";
 import compress from "compression";
-import expressValidator from "express-validator";
+import express from "express";
+import expressJwt from "express-jwt";
+import morgan from "morgan";
+import Locals from "../providers/Locals";
 
 class Http {
   public static mount(_express: Application): Application {
@@ -15,7 +18,19 @@ class Http {
 
     // Enables the "gzip" / "deflate" compression for response
     _express.use(compress());
-
+    _express.use(express.json());
+    _express.use(express.urlencoded({ extended: true }));
+    _express.use(
+      expressJwt({
+        secret: Locals.config().appSecret,
+        algorithms: ["HS256"],
+      }).unless({
+        path: [{ url: "/api/user", methods: ["POST"] }],
+      })
+    );
+    if (Locals.config().environment === "development") {
+      _express.use(morgan("dev"));
+    }
     return _express;
   }
 }

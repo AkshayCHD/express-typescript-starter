@@ -2,6 +2,7 @@ import express from "express";
 
 import Locals from "./Locals";
 import apiRouter from "../routes/index";
+import Http from "../middlewares/http.middleware";
 import ExceptionHandler from "../exeption/Handler";
 
 class Express {
@@ -15,10 +16,15 @@ class Express {
    */
   constructor() {
     this.express = express();
-
+    this.mountMiddlewares();
     this.mountRoutes();
   }
-
+  /**
+   * Mounts all the defined routes
+   */
+  private mountMiddlewares(): void {
+    Http.mount(this.express);
+  }
   /**
    * Mounts all the defined routes
    */

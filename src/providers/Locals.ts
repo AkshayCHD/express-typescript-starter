@@ -15,6 +15,7 @@ class Locals {
    */
   public static config(): any {
     dotenv.config({ path: path.join(__dirname, "../../.env") });
+    const environment = process.env.ENV || "development";
     const url = process.env.APP_URL || `http://localhost:${process.env.PORT}`;
     const port = process.env.PORT || 5521;
     const appSecret = process.env.APP_SECRET || "This is your responsibility!";
@@ -28,6 +29,7 @@ class Locals {
       mongooseUrl,
       port,
       url,
+      environment,
     };
   }
 

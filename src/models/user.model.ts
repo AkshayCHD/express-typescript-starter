@@ -1,9 +1,10 @@
 import mongoose from "../providers/Database";
 
 export interface IUser {
-  mobile: string;
   userName: string;
-  lastSeen: Date;
+  name: string;
+  age: number;
+  country: string;
 }
 
 // Create the model schema & register your custom methods here
@@ -12,9 +13,10 @@ export interface IUserModel extends IUser, mongoose.Document {}
 // Define the User Schema
 export const UserSchema = new mongoose.Schema(
   {
-    mobile: { type: Number, unique: true },
     userName: { type: String, unique: true },
-    lastSeen: { type: Date, default: Date.now() },
+    age: { type: String, default: 0 },
+    country: { type: String, default: "India" },
+    name: { type: String, required: true },
   },
   {
     timestamps: true,
