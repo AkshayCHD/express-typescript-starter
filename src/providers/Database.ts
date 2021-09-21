@@ -23,6 +23,9 @@ export class Database {
       throw new Error(`unable to connect to database: ${mongoUri}`);
     });
   }
+  public static close(): any {
+    mongoose.connection.close();
+  }
 }
 
 export default mongoose;
