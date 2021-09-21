@@ -3,7 +3,6 @@ import * as dotenv from "dotenv";
 dotenv.config({ path: path.join(__dirname, "../../.env.test") });
 
 import Locals from "../providers/Locals";
-console.log(Locals.config());
 import { Database } from "../providers/Database";
 Database.init(Locals.config().mongooseUrlUnitTest);
 import mongoose from "mongoose";
@@ -28,7 +27,7 @@ describe("User unit tests", () => {
     let user: IUserModel;
 
     it("Unauthorized error should be given", async () => {
-      const result = await chai.request(app).put(`/api/user`);
+      const result = await chai.request(app).put("/api/user");
       const { error } = result.body;
       const status = result.status;
       assert.equal(401, status);
@@ -44,7 +43,7 @@ describe("User unit tests", () => {
       }).save();
       const result = await chai
         .request(app)
-        .put(`/api/user`)
+        .put("/api/user")
         .set("content-type", "application/json")
         .send({
           name: "Yahska",
@@ -77,7 +76,7 @@ describe("User unit tests", () => {
     it("Get user object", async () => {
       const result = await chai
         .request(app)
-        .get(`/api/user`)
+        .get("/api/user")
         .set("content-type", "application/json")
         .set({ Authorization: `Bearer ${token}` });
       const { userName, name, age, country } = result.body.user;
@@ -90,5 +89,9 @@ describe("User unit tests", () => {
 
   afterEach(async () => {
     await User.deleteMany();
+  });
+
+  after(() => {
+    Database.close();
   });
 });
