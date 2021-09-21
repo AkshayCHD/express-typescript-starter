@@ -13,7 +13,6 @@ import {
 import userController from "../controllers/user.controller";
 const router = Router();
 
-router.post("/health-check", userController.healthCheck);
 router.post(
   "/",
   body("userName", userNameError).isString().isLength(userNameRange),
