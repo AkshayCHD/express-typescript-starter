@@ -5,7 +5,7 @@ import ValidationError from "../exeption/ValidationError";
 import User from "../models/user.model";
 import jwt from "jsonwebtoken";
 import Locals from "../providers/Locals";
-const temp = "";
+
 class UserController {
   public healthCheck(req: Request, res: Response, next: NextFunction) {
     return res.json({ status: "server up and running" });
