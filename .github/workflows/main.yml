@@ -7,14 +7,10 @@ jobs:
     name: SonarQube Trigger
     runs-on: ubuntu-latest
     steps:
-    - name: just echo a message
-      run: |
-        echo Hello there! |
-        pwd
-#     - uses: actions/checkout@master
-#     - name: SonarQube Scan
-#       uses: kitabisa/sonarqube-action@v1.1.0
-#       with:
-#         projectBaseDir: "./src"
-#         host: ${{ secrets.SONARQUBE_HOST }}
-#         login: ${{ secrets.SONARQUBE_TOKEN }}
+    - uses: actions/checkout@master
+    - name: SonarQube Scan
+      uses: kitabisa/sonarqube-action@v1.1.0
+      with:
+        projectBaseDir: "/home/runner/work/NodeJs-Backend-Starter-Template/NodeJs-Backend-Starter-Template/src"
+        host: ${{ secrets.SONARQUBE_HOST }}
+        login: ${{ secrets.SONARQUBE_TOKEN }}
