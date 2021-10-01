@@ -12,14 +12,13 @@ class Handler {
   public static errorHandler(
     err: Error | ValidationError | APIError,
     req: Request,
-    res: Response,
-    next: NextFunction
+    res: Response
   ): any {
-    if (err instanceof ValidationError) {
-      return res.status(err.status).json({ error: err.message });
-    } else if (err instanceof APIError) {
-      return res.status(err.status).json({ error: err.message });
-    } else if (err instanceof UnauthorizedError) {
+    if (
+      err instanceof ValidationError ||
+      err instanceof APIError ||
+      err instanceof UnauthorizedError
+    ) {
       return res.status(err.status).json({ error: err.message });
     }
     return res.status(500).json({
