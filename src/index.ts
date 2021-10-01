@@ -9,6 +9,7 @@ import Locals from "./providers/Locals";
 console.log(Locals.config());
 App.loadDatabase(Locals.config().mongooseUrl);
 
+
 /**
  * Run the Server on Clusters
  */

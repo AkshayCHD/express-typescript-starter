@@ -17,6 +17,7 @@ class UserController {
       if (!errors.isEmpty()) {
         throw new ValidationError(errors);
       }
+      console.log("errors", errors)
       const { userName, name, age, country } = request.body;
       const existingUser = await User.findOne({ userName });
       if (existingUser) {
